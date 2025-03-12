@@ -9,6 +9,9 @@ function productDetailsTemplate(product) {
       alt="${product.NameWithoutBrand}"
     />
     <p class="product-card__price">$${product.FinalPrice}</p>
+    <p class="product-card__price" 
+    style="color: ${(product.FinalPrice < product.SuggestedRetailPrice) ? 'Green' : 'inherit'};">
+     The Discount is: $${parseFloat((product.SuggestedRetailPrice - product.FinalPrice).toFixed(2))}</p>
     <p class="product__color">${product.Colors[0].ColorName}</p>
     <p class="product__description">
     ${product.DescriptionHtmlSimple}
