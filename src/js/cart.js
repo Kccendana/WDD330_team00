@@ -1,5 +1,5 @@
 
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
@@ -46,6 +46,24 @@ function addTotal() {
 
 }
 
+function removeItem(itemId) {
+  let cartItems = getLocalStorage("so-cart");
+  if (cartItems) {
+    cartItems = cartItems.filter((item) => item.Id !== itemId);
+    setLocalStorage("so-cart", cartItems);
+    renderCartContents();
+  }
+}
 
+function setupRemoveListeners() {
+  const removeButtons = document.querySelectorAll(".remove-item");
+  removeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const itemId = button.dataset.id;
+      removeItem(itemId);
+    });
+  });
+}
 
 renderCartContents();
+setupRemoveListeners();
