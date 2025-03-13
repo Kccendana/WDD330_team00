@@ -166,6 +166,13 @@ button {
   width: 100%;
 }
 
+/* PRODUCT DISCOUNT */
+.discount-indicator {
+  color: rgb(124, 34, 34);
+  font-size: 14px;
+}
+
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
