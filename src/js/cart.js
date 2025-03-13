@@ -55,7 +55,7 @@ function removeItem(itemId) {
   }
 }
 
-function setupRemoveListeners() {
+function removeListeners() {
   const removeButtons = document.querySelectorAll(".remove-item");
   removeButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -66,4 +66,4 @@ function setupRemoveListeners() {
 }
 
 renderCartContents();
-setupRemoveListeners();
+removeListeners();
