@@ -1,6 +1,14 @@
+
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
+    let discountIndicator = "";
+    if (product.FinalPrice < product.SuggestedRetailPrice) {
+        let priceA = (product.SuggestedRetailPrice - product.FinalPrice)/product.SuggestedRetailPrice;
+        let discount = Math.round(priceA * 100);
+        discountIndicator = `<span class="discount-indicator"> -${discount}%</span>`
+    }
+
     return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
     <h2 class="divider">${product.NameWithoutBrand}</h2>
     <img
@@ -8,7 +16,7 @@ function productDetailsTemplate(product) {
       src="${product.Image}"
       alt="${product.NameWithoutBrand}"
     />
-    <p class="product-card__price">$${product.FinalPrice}</p>
+    <p class="product-card__price">$${product.FinalPrice} (${discountIndicator})</p>
     <p class="product__color">${product.Colors[0].ColorName}</p>
     <p class="product__description">
     ${product.DescriptionHtmlSimple}
@@ -34,13 +42,15 @@ export default class ProductDetails {
         document
             .getElementById("addToCart")
             .addEventListener("click", this.addToCart.bind(this));
+            ;
     }
     addToCart() {
         let item = getLocalStorage("so-cart") || [];
         const array = Array.from(item);
         array.push(this.product);
         console.log(array);
-        setLocalStorage("so-cart", array);
+        setLocalStorage("so-cart", array)
+        alert("Added to Cart");
     }
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
