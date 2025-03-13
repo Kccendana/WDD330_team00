@@ -36,7 +36,7 @@ function addTotal() {
     footer.classList.remove("hide");
 
     const total = items.reduce((sum, item) => sum + item.FinalPrice, 0);
-  document.querySelector(".cart-total").textContent = `Total: $${total.toFixed(2)}`;
+    document.querySelector(".cart-total").textContent = `Total: $${total.toFixed(2)}`;
   }
   else {
     footer.classList.add("hide");
