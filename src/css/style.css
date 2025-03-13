@@ -172,6 +172,11 @@ button {
   font-size: 14px;
 }
 
+.alert-list {
+  font-size: 25px;
+}
+
+
 
 /* Start cart list card styles */
 .cart-card {
