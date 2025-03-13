@@ -202,6 +202,21 @@ button {
   grid-column: 3;
 }
 
+.item-count {
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1px;
+  border-radius: 50%;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 0px;
+  top: 7px;
+  font-size: 15px;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
