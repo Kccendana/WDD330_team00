@@ -36,5 +36,28 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
     parentElement.innerHTML = "";
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
 
+function itemsCount(){
+  const items = getLocalStorage("so-cart") || [];
+  const itemsCount = items.length
+  if (itemsCount === null) {
+    return 0;
+  }else {
+    return itemsCount
+  }
+  
+}
+
+export function updateCartCount(){
+  const count =itemsCount();
+  const countElement = document.querySelector(".item-count");
+  if (countElement){
+    if (count === 0){
+    countElement.style.display = 'none';
+  } else{
+    countElement.style.display = 'block';
+    countElement.textContent = count;
+  } 
+  }
 }

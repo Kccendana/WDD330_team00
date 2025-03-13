@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
     return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
@@ -33,7 +33,10 @@ export default class ProductDetails {
         // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
         document
             .getElementById("addToCart")
-            .addEventListener("click", this.addToCart.bind(this));
+            .addEventListener("click", () => {
+             this.addToCart();
+             updateCartCount();
+            });
     }
     addToCart() {
         let item = getLocalStorage("so-cart") || [];
