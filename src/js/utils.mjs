@@ -30,7 +30,8 @@ export function getParam(param) {
 }
 
 export function renderListWithTemplate(templateFn, parentElement, list, position="afterbegin", clear = false) {
-  const htmlString = list.map(templateFn);
+  const filterList = list.filter(item => item.clear !== true);
+  const htmlString = filterList.map(templateFn);
   if (clear) {
     parentElement.innerHTML = "";
   }
