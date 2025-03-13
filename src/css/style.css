@@ -176,6 +176,15 @@ button {
   font-size: 25px;
 }
 
+/* CART */
+.hide {
+  display: none;
+}
+
+.cart-footer {
+  font-size: 25px;
+}
+
 
 
 /* Start cart list card styles */
