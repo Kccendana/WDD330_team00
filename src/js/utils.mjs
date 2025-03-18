@@ -25,10 +25,33 @@ export function setClick(selector, callback) {
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get(param);
+  const product = urlParams.get('product')
   return product;
 }
 
+function itemsCount(){
+  const items = getLocalStorage("so-cart") || [];
+  const itemsCount = items.length
+  if (itemsCount === null) {
+    return 0;
+  }else {
+    return itemsCount
+  }
+  
+}
+
+export function updateCartCount(){
+  const count =itemsCount();
+  const countElement = document.querySelector(".item-count");
+  if (countElement){
+    if (count === 0){
+    countElement.style.display = 'none';
+  } else{
+    countElement.style.display = 'block';
+    countElement.textContent = count;
+  } 
+  }
+  
 export function renderListWithTemplate(templateFn, parentElement, list, position="afterbegin", clear = false) {
   const filterList = list.filter(item => item.clear !== true);
   const htmlString = filterList.map(templateFn);
