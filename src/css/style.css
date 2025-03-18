@@ -26,22 +26,23 @@ img {
   max-width: 100%;
 }
 header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
 }
 .logo {
-  line-height: 60px;
+  line-height: 70px;
   width: 245px;
   overflow: hidden;
   display: flex;
-  font-size: 30px;
+  font-size: 40px;
   text-align: right;
   font-family: var(--font-headline);
 }
 .logo img {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
 }
 .logo a {
   text-decoration: none;
@@ -104,7 +105,7 @@ button {
 }
 
 .cart svg {
-  width: 25px;
+  width: 35px;
 }
 .cart:hover svg {
   fill: gray;
