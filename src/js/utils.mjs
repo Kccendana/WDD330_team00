@@ -51,6 +51,7 @@ export function updateCartCount(){
     countElement.textContent = count;
   } 
   }
+}
   
 export function renderListWithTemplate(templateFn, parentElement, list, position="afterbegin", clear = false) {
   const filterList = list.filter(item => item.clear !== true);

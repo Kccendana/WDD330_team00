@@ -8,8 +8,7 @@ const element = document.querySelector(".product-list");
 const list = new ProductList("Tents", dataSource, element);
 list.init();
 
-const alert = new Alert('alerts.json');
+const alert = new Alert("alerts.json");
 alert.init();
 
 updateCartCount();
-

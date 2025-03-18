@@ -44,7 +44,8 @@ export default class ProductDetails {
              this.addToCart();
              updateCartCount();
             });
-      
+    }  
+    
     addToCart() {
         let item = getLocalStorage("so-cart") || [];
         const array = Array.from(item);
@@ -53,6 +54,7 @@ export default class ProductDetails {
         setLocalStorage("so-cart", array)
         alert("Added to Cart");
     }
+
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
         element.insertAdjacentHTML(
