@@ -29,15 +29,6 @@ export function getParam(param) {
   return product;
 }
 
-export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false){
-  const htmlStrings = list.map(templateFn);
-  // if clear is true we need to clear out the contents of the parent.
-  if (clear) {
-    parentElement.innerHTML = "";
-  }
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
-}
-
 function itemsCount(){
   const items = getLocalStorage("so-cart") || [];
   const itemsCount = items.length
@@ -60,4 +51,12 @@ export function updateCartCount(){
     countElement.textContent = count;
   } 
   }
+  
+export function renderListWithTemplate(templateFn, parentElement, list, position="afterbegin", clear = false) {
+  const filterList = list.filter(item => item.clear !== true);
+  const htmlString = filterList.map(templateFn);
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  parentElement.insertAdjacentHTML(position, htmlString.join(""));
 }
