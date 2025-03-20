@@ -140,7 +140,11 @@ button {
 /* Product-listing */
 .product-category {
   display: flex;
-  
+  justify-content: space-evenly; 
+}
+
+figcaption {
+  text-align: center;
 }
 
 /* Styles for product lists */
