@@ -30,19 +30,21 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
+  align-items: center;
 }
 .logo {
   line-height: 70px;
   width: 245px;
   overflow: hidden;
   display: flex;
-  font-size: 40px;
+  font-size: 30px;
   text-align: right;
   font-family: var(--font-headline);
+  align-items: center;
 }
 .logo img {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
 }
 .logo a {
   text-decoration: none;
@@ -105,7 +107,7 @@ button {
 }
 
 .cart svg {
-  width: 35px;
+  width: 25px;
 }
 .cart:hover svg {
   fill: gray;
