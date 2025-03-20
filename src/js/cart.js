@@ -65,5 +65,4 @@ function removeListeners() {
 
 renderCartContents();
 removeListeners();
-updateCartCount();
 loadHeaderFooter();

@@ -83,4 +83,5 @@ export async function loadHeaderFooter(){
   const footerTemplate = await loadTemplate("../partials/footer.html");
   const footerElement = document.querySelector("#footer");
   renderWithTemplate(footerTemplate, footerElement);
+  updateCartCount();
 }

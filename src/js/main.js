@@ -12,5 +12,4 @@ list.init();
 const alert = new Alert("alerts.json");
 alert.init();
 
-updateCartCount();
 loadHeaderFooter();
