@@ -136,6 +136,13 @@ button {
   text-decoration: none;
   color: var(--dark-grey);
 }
+
+/* Product-listing */
+.product-category {
+  display: flex;
+  
+}
+
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;
