@@ -1,4 +1,9 @@
-import { getLocalStorage, setLocalStorage, updateCartCount, loadHeaderFooter } from "./utils.mjs";
+import {
+  getLocalStorage,
+  setLocalStorage,
+  updateCartCount,
+  loadHeaderFooter,
+} from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
@@ -12,7 +17,7 @@ function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimarySmall}"
       alt="${item.Name}"
     />
   </a>
@@ -20,7 +25,7 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: 1</p>
+  <p class="cart-card__quantity">${item.quantity}</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
   <button class="remove-item" data-id="${item.Id}">X</button>
   </li>`;
@@ -35,7 +40,10 @@ function addTotal() {
   if (items && items.length > 0) {
     footer.classList.remove("hide");
 
-    const total = items.reduce((sum, item) => sum + item.FinalPrice, 0);
+    const total = items.reduce(
+      (sum, item) => sum + item.FinalPrice * item.quantity,
+      0,
+    );
     document.querySelector(".cart-total").textContent =
       `Total: $${total.toFixed(2)}`;
   } else {
@@ -49,6 +57,7 @@ function removeItem(itemId) {
     cartItems = cartItems.filter((item) => item.Id !== itemId);
     setLocalStorage("so-cart", cartItems);
     renderCartContents();
+    removeListeners();
     updateCartCount();
   }
 }
