@@ -140,6 +140,13 @@ button {
   max-width: 600px;
   margin: auto;
 }
+select#sort-by {
+  font-size: 1em;
+  padding: 0.25em;
+  border-color: orange;
+  border-radius: 0.5em;
+  font-family: Arial, Helvetica, sans-serif;
+}
 .products {
   padding: 0.5em;
 }
