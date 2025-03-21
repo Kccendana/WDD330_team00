@@ -50,7 +50,8 @@ export default class ProductList {
     }
 
     renderList(list) {
-       renderListWithTemplate(productCardTemplate, this.listElement, list);
+        this.listElement.innerHTML = "";
+        renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
 
     sortProducts(sortBy) {
