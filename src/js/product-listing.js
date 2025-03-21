@@ -15,7 +15,5 @@ alert.init();
 loadHeaderFooter();
 
 document.getElementById("sort-by").addEventListener("change", (event) => {
-    list.sortProducts(event.target.value); 
+  list.sortProducts(event.target.value);
 });
-
-

@@ -40,7 +40,10 @@ function addTotal() {
   if (items && items.length > 0) {
     footer.classList.remove("hide");
 
-    const total = items.reduce((sum, item) => sum + (item.FinalPrice * item.quantity), 0);
+    const total = items.reduce(
+      (sum, item) => sum + item.FinalPrice * item.quantity,
+      0,
+    );
     document.querySelector(".cart-total").textContent =
       `Total: $${total.toFixed(2)}`;
   } else {
