@@ -25,7 +25,7 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: 1</p>
+  <p class="cart-card__quantity">${item.quantity}</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
   <button class="remove-item" data-id="${item.Id}">X</button>
   </li>`;
@@ -40,7 +40,7 @@ function addTotal() {
   if (items && items.length > 0) {
     footer.classList.remove("hide");
 
-    const total = items.reduce((sum, item) => sum + item.FinalPrice, 0);
+    const total = items.reduce((sum, item) => sum + (item.FinalPrice * item.quantity), 0);
     document.querySelector(".cart-total").textContent =
       `Total: $${total.toFixed(2)}`;
   } else {

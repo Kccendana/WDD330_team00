@@ -31,12 +31,26 @@ export function getParam(param) {
 
 function itemsCount(){
   const items = getLocalStorage("so-cart") || [];
-  const itemsCount = items.length
-  if (itemsCount === null) {
-    return 0;
-  }else {
-    return itemsCount
+  let totalQuantity = 0;
+
+  if (items && items.length > 0) {
+    items.forEach(item => {
+      if (item.quantity) {
+        totalQuantity += item.quantity;
+      }
+      else {
+        totalQuantity++;
+      }
+    });
   }
+
+  return totalQuantity;
+  // const itemsCount = items.length
+  // if (itemsCount === null) {
+  //   return 0;
+  // }else {
+  //   return itemsCount
+  // }
   
 }
 

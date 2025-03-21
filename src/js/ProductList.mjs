@@ -29,15 +29,52 @@ export default class ProductList {
         this.category = category;
         this.dataSource = dataSource;
         this.listElement = listElement;
+        this.products = [];
     }
-    async init() {
-        const list = await this.dataSource.getData(this.category);
-        this.renderList(list);
-        document.querySelector(".title").textContent = this.category;
+    // async init() {
+    //     const list = await this.dataSource.getData(this.category);
+    //     this.renderList(list);
+    //     document.querySelector(".title").textContent = this.category;
   
+    // }
+
+    async init() {
+        try {
+            this.products = await this.dataSource.getData(this.category);
+            this.renderList(this.products);
+            document.querySelector(".title").textContent = this.category;
+        } catch (error) {
+            console.error("Error fetching product data:", error);
+            this.listElement.innerHTML = "There was an error loading the product list.";
+        }
     }
 
     renderList(list) {
        renderListWithTemplate(productCardTemplate, this.listElement, list);
+    }
+
+    sortProducts(sortBy) {
+        let sortedProd = [...this.products];
+
+        switch (sortBy) {
+            case "price-asc":
+                sortedProd.sort((a, b) => a.FinalPrice - b.FinalPrice);
+                break;
+            case "price-desc":
+                sortedProd.sort((a, b) => b.FinalPrice - a.FinalPrice);
+                break;
+            case "name-asc":
+                sortedProd.sort((a, b) => a.Name.localeCompare(b.Name));
+                break;
+            case "name-desc":
+                sortedProd.sort((a, b) => b.Name.localeCompare(a.Name));
+                break;
+            default:
+                break;
+        }
+
+        this.renderList(sortedProd);
+        console.log("Sorted products:", sortedProd);
+        console.log("renderList called");
     }
 }
