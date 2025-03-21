@@ -29,15 +29,9 @@ export function getParam(param) {
   return product;
 }
 
-function itemsCount(){
+function itemsCount() {
   const items = getLocalStorage("so-cart") || [];
-  const itemsCount = items.length
-  if (itemsCount === null) {
-    return 0;
-  }else {
-    return itemsCount
-  }
-  
+  return items.reduce((total, item) => total + (item.quantity || 1), 0);
 }
 
 export function updateCartCount(){

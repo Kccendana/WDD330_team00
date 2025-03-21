@@ -29,13 +29,29 @@ export default class ProductList {
         this.category = category;
         this.dataSource = dataSource;
         this.listElement = listElement;
+        this.products = [];
     }
+
     async init() {
-        const list = await this.dataSource.getData(this.category);
-        this.renderList(list);
+        this.products = await this.dataSource.getData(this.category); // Fix syntax error
+        this.renderList(this.products); // Fix incorrect variable name
     }
 
     renderList(list) {
-       renderListWithTemplate(productCardTemplate, this.listElement, list);
+        renderListWithTemplate(productCardTemplate, this.listElement, list);
+    }
+
+    sortProducts(sortBy) {
+        const sortedProd = [...this.products];
+        const [key, order] = sortBy.split("-");
+        const isAscending = order === "asc" ? 1 : -1;
+
+        sortedProd.sort((a, b) => {
+            if (key === "price") return isAscending * (a.FinalPrice - b.FinalPrice);
+            if (key === "name") return isAscending * a.Name.localeCompare(b.Name);
+            return 0;
+        });
+
+        this.renderList(sortedProd); // Automatically update the UI with sorted data
     }
 }
