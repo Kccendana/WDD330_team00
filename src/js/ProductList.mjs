@@ -33,7 +33,13 @@ export default class ProductList {
     async init() {
         // const list = await this.dataSource.getData();
         const list = await this.dataSource.getData(this.category);
-        this.renderList(list);
+        console.log(list);
+        const sortedList = list.sort((a, b) => {
+            if (a.Name < b.Name) return -1;
+            if (a.Name > b.Name) return 1;
+        });
+        console.log(sortedList);
+        this.renderList(sortedList);
         document.querySelector(".title").textContent = this.category.charAt(0).toUpperCase() + this.category.slice(1);
     }
 
