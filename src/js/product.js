@@ -7,5 +7,5 @@ const productId = getParam("product");
 console.log(productId)
 
 const product = new ProductDetails(productId, dataSource);
-product.init(productId);
+product.init();
 loadHeaderFooter();
