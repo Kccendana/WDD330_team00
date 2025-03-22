@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, updateCartCount, loadHeaderFooter } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartCount, loadHeaderFooter, getItemsFromLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
@@ -20,7 +20,10 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">${item.quantity}</p>
+  <div class="quantity-container">
+    <div class="decrement" data-id="${item.Id}">-</div>
+    <span class="cart-card__quantity">${item.quantity}</span>
+    <div class="increment" data-id="${item.Id}">+</div></div>
   <p class="cart-card__price">$${item.FinalPrice}</p>
   <button class="remove-item" data-id="${item.Id}">X</button>
   </li>`;
@@ -29,7 +32,7 @@ function cartItemTemplate(item) {
 }
 
 function addTotal() {
-  const items = getLocalStorage("so-cart");
+  const items = getItemsFromLocalStorage();
 
   const footer = document.querySelector(".cart-footer");
   if (items && items.length > 0) {
@@ -63,6 +66,52 @@ function removeListeners() {
     });
   });
 }
+
+function incrementQuantity(id) {
+  const items = getItemsFromLocalStorage();
+  const index = items.findIndex(item => item.Id === id);
+
+  if (index!== -1) {
+    items[index].quantity += 1; // Increase quantity
+    setLocalStorage("so-cart", items); // Update local storage
+    renderCartContents();
+    updateCartCount();
+  }
+}
+
+function decrementQuantity(id) {
+  const items = getItemsFromLocalStorage();
+  const index = items.findIndex(item => item.Id === id);
+
+  if (index !== -1) {
+    if (items[index].quantity === 1){
+      removeItem(id)
+    } else {
+      items[index].quantity -= 1; // Increase quantity
+      setLocalStorage("so-cart", items); // Update local storage
+      renderCartContents();
+      updateCartCount();
+    } 
+  }
+  
+}
+
+
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains("increment")) {
+    const itemId = event.target.dataset.id;
+    console.log("Increment clicked:", itemId);
+    incrementQuantity(itemId);
+  }
+});
+
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains("decrement")) {
+    const itemId = event.target.dataset.id;
+    console.log("Decrement clicked:", itemId);
+    decrementQuantity(itemId);
+  }
+});
 
 renderCartContents();
 removeListeners();

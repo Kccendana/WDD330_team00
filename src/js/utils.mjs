@@ -29,8 +29,11 @@ export function getParam(param) {
   return product;
 }
 
+export function getItemsFromLocalStorage(){
+  return getLocalStorage("so-cart") || [];
+}
 function itemsCount() {
-  const items = getLocalStorage("so-cart") || [];
+  const items = getItemsFromLocalStorage()
   return items.reduce((total, item) => total + (item.quantity || 1), 0);
 }
 

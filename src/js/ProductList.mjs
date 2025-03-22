@@ -5,7 +5,7 @@ function productCardTemplate(product) {
     if (product.FinalPrice < product.SuggestedRetailPrice) {
         let priceA = (product.SuggestedRetailPrice - product.FinalPrice)/product.SuggestedRetailPrice;
         let discount = Math.round(priceA * 100);
-        discountIndicator = `<span class="discount-indicator"> -${discount}%</span>`
+        discountIndicator = `<span class="discount-indicator"> -${discount}% Off</span>`
     }
 
     return `
