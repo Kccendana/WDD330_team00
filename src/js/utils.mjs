@@ -25,37 +25,40 @@ export function setClick(selector, callback) {
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get('product')
+  const product = urlParams.get(param);
   return product;
 }
 
-function itemsCount(){
+function itemsCount() {
   const items = getLocalStorage("so-cart") || [];
   const itemsCount = items.length
   if (itemsCount === null) {
     return 0;
-  }else {
+  } else {
     return itemsCount
   }
-  
+
 }
 
-export function updateCartCount(){
-  const count =itemsCount();
+export function updateCartCount() {
+  const count = itemsCount();
   const countElement = document.querySelector(".item-count");
-  if (countElement){
-    if (count === 0){
-    countElement.style.display = 'none';
-  } else{
-    countElement.style.display = 'block';
-    countElement.textContent = count;
-  } 
+
+  if (countElement) {
+    if (count === 0) {
+      countElement.style.display = 'none';
+    } else {
+      countElement.style.display = 'block';
+      countElement.textContent = count;
+    }
   }
 }
-  
-export function renderListWithTemplate(templateFn, parentElement, list, position="afterbegin", clear = false) {
-  const filterList = list.filter(item => item.clear !== true);
-  const htmlString = filterList.map(templateFn);
+
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  // const filterList = list.filter(item => item.clear !== true);
+  // const htmlString = filterList.map(templateFn);
+  const htmlString = list.map(templateFn)
+
   if (clear) {
     parentElement.innerHTML = "";
   }
@@ -64,7 +67,7 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
 
 export function renderWithTemplate(template, parentElement, data, callback) {
   parentElement.innerHTML = template;
-  if(callback) {
+  if (callback) {
     callback(data);
   }
 }
@@ -75,13 +78,31 @@ export async function loadTemplate(path) {
   return template;
 }
 
-export async function loadHeaderFooter(){
+export async function cartNavigation() {
+  const cart = document.querySelector(".cart");
+  console.log(cart);
+  const cart_image = document.querySelector("#cart-image");
+  console.log(cart_image)
+
+  cart.addEventListener("click", () => {
+    window.location.replace("/cart/index.html");
+  })
+  cart_image.addEventListener("click", () => {
+    window.location.replace("/cart/index.html");
+  })
+
+}
+export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate("../partials/header.html");
   const headerElement = document.querySelector("#header");
   renderWithTemplate(headerTemplate, headerElement);
+  cartNavigation();
 
   const footerTemplate = await loadTemplate("../partials/footer.html");
   const footerElement = document.querySelector("#footer");
   renderWithTemplate(footerTemplate, footerElement);
   updateCartCount();
 }
+
+
+
