@@ -18,11 +18,12 @@
 
     <main class="divider">
       <form method="post" action="" class="form-checkout" name="checkout">
+        <input type="hidden" name="orderDate" id="orderDate">
         <fieldset>
         <fieldset>
           <h3>Customer Name</h3>
-          <label>First Name <input type="text" name="first" required autocapitalize="" autocomplete="given-name" title="Your First Name"></label>
-          <label>Last Name <input type="text" name="last" required autocapitalize="" autocomplete="family-name" title="Your Family Name"></label>
+          <label>First Name <input type="text" name="fname" required autocapitalize="" autocomplete="given-name" title="Your First Name"></label>
+          <label>Last Name <input type="text" name="lname" required autocapitalize="" autocomplete="family-name" title="Your Family Name"></label>
         </fieldset>
 
         <fieldset>
@@ -30,14 +31,14 @@
           <label>Street Address <input type="text" name="street" required autocomplete="street-address" title="Your Street Address"></label>
           <label>City <input type="text" name="city" required autocomplete="address-level2" title="Your City"></label>
           <label>State <input type="text" name="state" required autocomplete="address-level3" title="Your State"></label>
-          <label>Zip Code <input type="text" name="zipCode" required autocomplete="postal-code" title="Your Zip Code"></label>
+          <label>Zip Code <input type="text" name="zip" required autocomplete="postal-code" title="Your Zip Code"></label>
         </fieldset>
 
         <fieldset>
           <h3>Payment</h3>
-          <label>Credit Card Number <input type="text" name="creditCard" required title="Your Credit Card Number"></label>
-          <label>Expiration Date <input type="date" name="expiration" required title="Your Card Expiration Date"></label>
-          <label>Security Code <input type="text" name="securityCode" required title="Your Security Code Number"></label>
+          <label>Credit Card Number <input type="text" name="cardNumber" required title="Your Credit Card Number"></label>
+          <label>Expiration Date <input type="text" name="expiration" id="expiration" required></label>
+          <label>Security Code <input type="text" name="code" required title="Your Security Code Number"></label>
         </fieldset>
 
         <fieldset class="summary">
@@ -46,29 +47,28 @@
           <div class="order-summary">
             <div class="con">
               <div class="label">Items</div>
-            <div id="num-items">4</div>
+            <div id="num-items"></div>
             </div>
             
             <div class="con">
                <div class="label">Subtotal</div>
-            <div id="cartTotal">$12.8</div>
+            <div id="cartTotal"></div>
             </div>
             <div class="con">
               <div class="label">Tax</div>
-            <div id="tax">$4.05</div>
+            <div id="tax"></div>
             </div>
             <div class="con">
               <div class="label">Shipping</div>
-            <div id="shipping">$10.00</div>
+            <div id="shipping"></div>
             </div>
             <div class="con">
               <div class="label">Total</div>
-            <div id="orderTotal">$20.00</div>
+            <div id="orderTotal"></div>
             </div>
           </div>
         </fieldset>
-
-        <input type="submit" value="Checkout Items">
+        <input id="checkoutSubmit" type="submit" value="Checkout Items">
         </fieldset>
       </form>
     </main>
