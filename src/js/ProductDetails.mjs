@@ -12,7 +12,7 @@ function productDetailsTemplate(product) {
     <h2 class="divider">${product.NameWithoutBrand}</h2>
     <img
       class="divider"
-      src="${product.Image}"
+      src="${product.Images.PrimaryLarge}"
       alt="${product.NameWithoutBrand}"
     />
     <p class="product-card__price">$${product.FinalPrice} (${discountIndicator})</p>
@@ -47,12 +47,29 @@ export default class ProductDetails {
     }  
     
     addToCart() {
-        let item = getLocalStorage("so-cart") || [];
-        const array = Array.from(item);
-        array.push(this.product);
-        console.log(array);
-        setLocalStorage("so-cart", array)
-        alert("Added to Cart");
+        let cart = getLocalStorage("so-cart") || [];
+        let itemIndex = cart.findIndex(item => item.Id === this.product.Id);
+        if (itemIndex !== -1) {
+            // Item already in cart
+            if (!cart[itemIndex].quantity){
+                cart[itemIndex].quantity = 2;
+            } else {
+                cart[itemIndex].quantity++;
+            }
+        } else {
+            // Item not in cart, add it with quantity 1
+            this.product.quantity = 1;
+            cart.push(this.product);
+        }
+        setLocalStorage("so-cart", cart);
+
+        // let item = getLocalStorage("so-cart") || [];
+        // const array = Array.from(item);
+        // array.push(this.product);
+        // // console.log(array);
+        // setLocalStorage("so-cart", array)
+        // // alert("Added to Cart");
+        
     }
 
     renderProductDetails(selector) {
