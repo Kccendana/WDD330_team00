@@ -39,19 +39,32 @@ export default class ProductList {
 
     renderList(list) {
         renderListWithTemplate(productCardTemplate, this.listElement, list);
+        this.listElement.innerHTML = "";
+        renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
 
     sortProducts(sortBy) {
-        const sortedProd = [...this.products];
-        const [key, order] = sortBy.split("-");
-        const isAscending = order === "asc" ? 1 : -1;
+        let sortedProd = [...this.products];
 
-        sortedProd.sort((a, b) => {
-            if (key === "price") return isAscending * (a.FinalPrice - b.FinalPrice);
-            if (key === "name") return isAscending * a.Name.localeCompare(b.Name);
-            return 0;
-        });
+        switch (sortBy) {
+            case "price-asc":
+                sortedProd.sort((a, b) => a.FinalPrice - b.FinalPrice);
+                break;
+            case "price-desc":
+                sortedProd.sort((a, b) => b.FinalPrice - a.FinalPrice);
+                break;
+            case "name-asc":
+                sortedProd.sort((a, b) => a.Name.localeCompare(b.Name));
+                break;
+            case "name-desc":
+                sortedProd.sort((a, b) => b.Name.localeCompare(a.Name));
+                break;
+            default:
+                break;
+        }
 
-        this.renderList(sortedProd); // Automatically update the UI with sorted data
+        this.renderList(sortedProd);
+        console.log("Sorted products:", sortedProd);
+        console.log("renderList called");
     }
 }

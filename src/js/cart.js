@@ -1,4 +1,10 @@
-import { getLocalStorage, setLocalStorage, updateCartCount, loadHeaderFooter, getItemsFromLocalStorage } from "./utils.mjs";
+import {
+  getLocalStorage,
+  setLocalStorage,
+  updateCartCount,
+  loadHeaderFooter,
+  getItemsFromLocalStorage,
+} from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
@@ -38,7 +44,10 @@ function addTotal() {
   if (items && items.length > 0) {
     footer.classList.remove("hide");
 
-    const total = items.reduce((sum, item) => sum + item.FinalPrice * item.quantity, 0);
+    const total = items.reduce(
+      (sum, item) => sum + item.FinalPrice * item.quantity,
+      0,
+    );
     document.querySelector(".cart-total").textContent =
       `Total: $${total.toFixed(2)}`;
   } else {
@@ -69,9 +78,9 @@ function removeListeners() {
 
 function incrementQuantity(id) {
   const items = getItemsFromLocalStorage();
-  const index = items.findIndex(item => item.Id === id);
+  const index = items.findIndex((item) => item.Id === id);
 
-  if (index!== -1) {
+  if (index !== -1) {
     items[index].quantity += 1; // Increase quantity
     setLocalStorage("so-cart", items); // Update local storage
     renderCartContents();
@@ -81,21 +90,19 @@ function incrementQuantity(id) {
 
 function decrementQuantity(id) {
   const items = getItemsFromLocalStorage();
-  const index = items.findIndex(item => item.Id === id);
+  const index = items.findIndex((item) => item.Id === id);
 
   if (index !== -1) {
-    if (items[index].quantity === 1){
-      removeItem(id)
+    if (items[index].quantity === 1) {
+      removeItem(id);
     } else {
       items[index].quantity -= 1; // Increase quantity
       setLocalStorage("so-cart", items); // Update local storage
       renderCartContents();
       updateCartCount();
-    } 
+    }
   }
-  
 }
-
 
 document.addEventListener("click", (event) => {
   if (event.target.classList.contains("increment")) {

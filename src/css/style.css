@@ -138,7 +138,8 @@ button {
   align-items: center;
   gap: 1em;
 }
-.increment, .decrement {
+.increment,
+.decrement {
   cursor: pointer;
   font-size: 1em;
   background-color: none;
@@ -299,46 +300,53 @@ a.checkoutBtn:hover {
 /*checkout.html*/
 form {
   margin: 1rem 2%;
- 
+
   label {
     display: block;
-    padding-top: .2rem;
+    padding-top: 0.2rem;
   }
- 
+
   h3 {
     margin: 5px 0 10px 0;
   }
- 
-  input[type=text],
-    input[type=date],
-    select {
-      display: block;
-      margin: .1rem 0 1rem 0 ;
-      padding: .3rem;
-      border: 1px solid #999;
-      border-radius: 4px;
-      border-left-width: 5px;
-      border-left-color:#555;
-      font-size: 1rem;
-      color: #3D405B;
-      width: 250px;
-    }
- 
-    input:required {border-left-color: #d70000;}
-    input:focus {border-left-color: black; outline:none;}
-    input:required:valid{border-left-color: green;}
- 
-    input[type=submit] {
-      border: none;
-      text-align: center;
-      background-color: #3f6234;
-      color: white;
-      border-radius: 1rem;
-      padding: .75rem 2rem;
-      appearance: none;
-      margin: 10px;
-      font-size: 20px;
-    }
+
+  input[type="text"],
+  input[type="date"],
+  select {
+    display: block;
+    margin: 0.1rem 0 1rem 0;
+    padding: 0.3rem;
+    border: 1px solid #999;
+    border-radius: 4px;
+    border-left-width: 5px;
+    border-left-color: #555;
+    font-size: 1rem;
+    color: #3d405b;
+    width: 250px;
+  }
+
+  input:required {
+    border-left-color: #d70000;
+  }
+  input:focus {
+    border-left-color: black;
+    outline: none;
+  }
+  input:required:valid {
+    border-left-color: green;
+  }
+
+  input[type="submit"] {
+    border: none;
+    text-align: center;
+    background-color: #3f6234;
+    color: white;
+    border-radius: 1rem;
+    padding: 0.75rem 2rem;
+    appearance: none;
+    margin: 10px;
+    font-size: 20px;
+  }
 }
 .con {
   display: flex;
