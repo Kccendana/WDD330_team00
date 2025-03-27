@@ -25,19 +25,16 @@ export function setClick(selector, callback) {
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get('product')
+  const product = urlParams.get(param)
   return product;
 }
 
-function itemsCount(){
-  const items = getLocalStorage("so-cart") || [];
-  const itemsCount = items.length
-  if (itemsCount === null) {
-    return 0;
-  }else {
-    return itemsCount
-  }
-  
+export function getItemsFromLocalStorage(){
+  return getLocalStorage("so-cart") || [];
+}
+export function itemsCount() {
+  const items = getItemsFromLocalStorage()
+  return items.reduce((total, item) => total + (item.quantity || 1), 0);
 }
 
 export function updateCartCount(){

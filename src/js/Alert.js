@@ -1,3 +1,4 @@
+
 export default class Alert {
   constructor(alertDataSource) {
     this.alertDataSource = "../json/alert.json";
