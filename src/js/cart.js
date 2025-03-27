@@ -12,6 +12,7 @@ function renderCartContents() {
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 
   addTotal();
+  removeListeners();
 }
 
 function cartItemTemplate(item) {
@@ -52,6 +53,7 @@ function addTotal() {
       `Total: $${total.toFixed(2)}`;
   } else {
     footer.classList.add("hide");
+    document.querySelector(".cart-total").textContent = `Total: $0.00`
   }
 }
 
@@ -60,9 +62,9 @@ function removeItem(itemId) {
   if (cartItems) {
     cartItems = cartItems.filter((item) => item.Id !== itemId);
     setLocalStorage("so-cart", cartItems);
+    updateCartCount();
     renderCartContents();
     removeListeners();
-    updateCartCount();
   }
 }
 
@@ -121,5 +123,4 @@ document.addEventListener("click", (event) => {
 });
 
 renderCartContents();
-removeListeners();
 loadHeaderFooter();

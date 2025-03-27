@@ -228,6 +228,7 @@ select#sort-by {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 1rem;
 }
 a.checkoutBtn {
   color: white;
@@ -355,6 +356,33 @@ form {
 .label {
   width: 4em;
 }
+
+.success {
+  margin: 1rem;
+}
+
+.alert {
+  display: flex;
+  max-width: 60%;
+  margin: 1rem auto;
+  background-color: var(--primary-color);
+  border: 3px solid #b17c4c;
+
+  p {
+    margin: 1rem auto;
+  }
+  span {
+    font-size: 15px;
+    align-content: center;
+    padding: 0 2rem;
+  }
+  span:hover {
+    background-color:#b46521;
+    color: white;
+  }
+}
+
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

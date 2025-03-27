@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartCount, alertMessage } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
     let discountIndicator = "";
@@ -56,7 +56,7 @@ export default class ProductDetails {
         }
     
         setLocalStorage("so-cart", cart);
-        alert("Added to Cart");
+        alertMessage("Added to Cart");
     }
       
     renderProductDetails(selector) {
