@@ -4,6 +4,7 @@ import {
   updateCartCount,
   loadHeaderFooter,
   getItemsFromLocalStorage,
+  alertMessage
 } from "./utils.mjs";
 
 function renderCartContents() {
@@ -56,6 +57,7 @@ function addTotal() {
     footer.classList.add("hide");
     document.querySelector(".cart-total").textContent = `Total: $0.00`;
     checkoutBtn.classList.add("disabled");
+    alertMessage("Cart is empty!")
   }
 }
 
