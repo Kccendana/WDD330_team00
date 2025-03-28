@@ -1,9 +1,9 @@
-import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartCount, alertMessage } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
     let discountIndicator = "";
     if (product.FinalPrice < product.SuggestedRetailPrice) {
-        let priceA = (product.SuggestedRetailPrice - product.FinalPrice)/product.SuggestedRetailPrice;
+        let priceA = (product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice;
         let discount = Math.round(priceA * 100);
         discountIndicator = `<span class="discount-indicator"> -${discount}%</span>`
     }
@@ -41,24 +41,26 @@ export default class ProductDetails {
         document
             .getElementById("addToCart")
             .addEventListener("click", () => {
-             this.addToCart();
-             updateCartCount();
+                this.addToCart();
+                updateCartCount();
             });
     }
     addToCart() {
         let cart = getLocalStorage("so-cart") || [];
         let item = cart.find(item => item.Id === this.product.Id);
-    
+
         if (item) {
             item.quantity = (item.quantity || 1) + 1;
         } else {
             cart.push({ ...this.product, quantity: 1 });
         }
-    
+
+
         setLocalStorage("so-cart", cart);
-        alert("Added to Cart");
+        alertMessage("Added to Cart");
+        document.getElementById("cart-bag").classList.add('glow');
     }
-      
+
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
         element.insertAdjacentHTML(

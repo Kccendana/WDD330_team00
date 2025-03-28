@@ -1,11 +1,18 @@
-import { getLocalStorage, setLocalStorage, updateCartCount, loadHeaderFooter, getItemsFromLocalStorage } from "./utils.mjs";
+import {
+  getLocalStorage,
+  setLocalStorage,
+  updateCartCount,
+  loadHeaderFooter,
+  getItemsFromLocalStorage,
+  alertMessage,
+} from "./utils.mjs";
 
 function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart") || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 
   addTotal();
+  removeListeners();
 }
 
 function cartItemTemplate(item) {
@@ -33,16 +40,23 @@ function cartItemTemplate(item) {
 
 function addTotal() {
   const items = getItemsFromLocalStorage();
+  const checkoutBtn = document.querySelector(".checkoutBtn");
 
   const footer = document.querySelector(".cart-footer");
   if (items && items.length > 0) {
     footer.classList.remove("hide");
 
-    const total = items.reduce((sum, item) => sum + item.FinalPrice * item.quantity, 0);
+    const total = items.reduce(
+      (sum, item) => sum + item.FinalPrice * item.quantity,
+      0,
+    );
     document.querySelector(".cart-total").textContent =
       `Total: $${total.toFixed(2)}`;
   } else {
     footer.classList.add("hide");
+    document.querySelector(".cart-total").textContent = `Total: $0.00`;
+    checkoutBtn.classList.add("disabled");
+    alertMessage("Cart is empty!");
   }
 }
 
@@ -51,9 +65,9 @@ function removeItem(itemId) {
   if (cartItems) {
     cartItems = cartItems.filter((item) => item.Id !== itemId);
     setLocalStorage("so-cart", cartItems);
+    updateCartCount();
     renderCartContents();
     removeListeners();
-    updateCartCount();
   }
 }
 
@@ -69,9 +83,9 @@ function removeListeners() {
 
 function incrementQuantity(id) {
   const items = getItemsFromLocalStorage();
-  const index = items.findIndex(item => item.Id === id);
+  const index = items.findIndex((item) => item.Id === id);
 
-  if (index!== -1) {
+  if (index !== -1) {
     items[index].quantity += 1; // Increase quantity
     setLocalStorage("so-cart", items); // Update local storage
     renderCartContents();
@@ -81,21 +95,19 @@ function incrementQuantity(id) {
 
 function decrementQuantity(id) {
   const items = getItemsFromLocalStorage();
-  const index = items.findIndex(item => item.Id === id);
+  const index = items.findIndex((item) => item.Id === id);
 
   if (index !== -1) {
-    if (items[index].quantity === 1){
-      removeItem(id)
+    if (items[index].quantity === 1) {
+      removeItem(id);
     } else {
       items[index].quantity -= 1; // Increase quantity
       setLocalStorage("so-cart", items); // Update local storage
       renderCartContents();
       updateCartCount();
-    } 
+    }
   }
-  
 }
-
 
 document.addEventListener("click", (event) => {
   if (event.target.classList.contains("increment")) {
@@ -114,5 +126,4 @@ document.addEventListener("click", (event) => {
 });
 
 renderCartContents();
-removeListeners();
 loadHeaderFooter();
