@@ -239,6 +239,11 @@ a.checkoutBtn:hover {
   background-color: var(--primary-color);
   color: black;
 }
+
+.disabled {
+  pointer-events: none;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;

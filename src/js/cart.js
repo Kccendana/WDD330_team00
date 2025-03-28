@@ -40,6 +40,7 @@ function cartItemTemplate(item) {
 
 function addTotal() {
   const items = getItemsFromLocalStorage();
+  const checkoutBtn = document.querySelector(".checkoutBtn")
 
   const footer = document.querySelector(".cart-footer");
   if (items && items.length > 0) {
@@ -53,7 +54,8 @@ function addTotal() {
       `Total: $${total.toFixed(2)}`;
   } else {
     footer.classList.add("hide");
-    document.querySelector(".cart-total").textContent = `Total: $0.00`
+    document.querySelector(".cart-total").textContent = `Total: $0.00`;
+    checkoutBtn.classList.add("disabled");
   }
 }
 
