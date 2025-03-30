@@ -3,26 +3,26 @@ import { renderListWithTemplate } from "./utils.mjs";
 function productCardTemplate(product) {
     let discountIndicator = "";
     if (product.FinalPrice < product.SuggestedRetailPrice) {
-        let priceA = (product.SuggestedRetailPrice - product.FinalPrice)/product.SuggestedRetailPrice;
+        let priceA = (product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice;
         let discount = Math.round(priceA * 100);
-        discountIndicator = `<span class="discount-indicator"> -${discount}% Off</span>`
+        discountIndicator = `<span class="discount-indicator"> -${discount}% Off</span>`;
     }
 
     return `
     <li class="product-card">
         <a href="../product_pages/index.html?product=${product.Id}">
             <img 
-            src="${product.Images.PrimaryMedium}" 
-            alt="Image of ${product.Name}" 
+                src="${product.Images?.PrimaryMedium || 'placeholder.jpg'}" 
+                alt="Image of ${product.Name}" 
             />
-            <h3 class="card__brand">${product.Brand.Name}</h3>
+            <h3 class="card__brand">${product.Brand?.Name || 'Unknown Brand'}</h3>
             <h2 class="card__name">${product.Name}</h2>
-            <p class="product-card__price">
-            $${product.FinalPrice} (${discountIndicator})</p>
+            <p class="product-card__price">$${product.FinalPrice} ${discountIndicator}</p>
         </a>
     </li>    
     `;
 }
+
 
 export default class ProductList {
     constructor(category, dataSource, listElement) {
