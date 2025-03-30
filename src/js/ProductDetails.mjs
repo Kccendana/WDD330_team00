@@ -1,6 +1,6 @@
 import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
 
-function productDetailsTemplate(product) {
+/*function productDetailsTemplate(product) {
     let discountIndicator = "";
     if (product.FinalPrice < product.SuggestedRetailPrice) {
         let priceA = (product.SuggestedRetailPrice - product.FinalPrice)/product.SuggestedRetailPrice;
@@ -23,7 +23,63 @@ function productDetailsTemplate(product) {
     <div class="product-detail__add">
       <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
     </div></section>`;
-}
+} */
+
+//image carousel
+    function productDetailsTemplate(product) {
+        let discountIndicator = "";
+        if (product.FinalPrice < product.SuggestedRetailPrice) {
+            let discount = Math.round((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice * 100);
+            discountIndicator = `<span class="discount-indicator"> -${discount}%</span>`;
+        }
+    
+        // Generate the main image + thumbnails if extra images exist
+        let thumbnails = `
+            <img class="thumbnail active" src="${product.Images.PrimaryLarge}" alt="${product.NameWithoutBrand}" onclick="changeImage(this)">
+        `;
+        
+        if (product.Images.ExtraImages && product.Images.ExtraImages.length > 0) {
+            product.Images.ExtraImages.forEach(img => {
+                thumbnails += `
+                    <img class="thumbnail" src="${img.Src}" alt="Alternate view of ${product.NameWithoutBrand}" onclick="changeImage(this)">
+                `;
+            });
+        }
+    
+        return `
+        <section class="product-detail">
+            <h3>${product.Brand.Name}</h3>
+            <h2 class="divider">${product.NameWithoutBrand}</h2>
+            
+            <!-- Image Display -->
+            <div class="image-gallery">
+                <img id="mainImage" src="${product.Images.PrimaryLarge}" alt="${product.NameWithoutBrand}">
+                <div class="thumbnails">
+                    ${thumbnails}
+                </div>
+            </div>
+    
+            <p class="product-card__price">$${product.FinalPrice} (${discountIndicator})</p>
+            <p class="product__color">${product.Colors[0].ColorName}</p>
+            <p class="product__description">${product.DescriptionHtmlSimple}</p>
+            
+            <div class="product-detail__add">
+                <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
+            </div>
+        </section>`;
+    }
+    
+
+
+    window.changeImage = function(thumbnail) {
+        document.getElementById("mainImage").src = thumbnail.src;
+    
+        // Highlight the active thumbnail
+        document.querySelectorAll(".thumbnail").forEach(img => img.classList.remove("active"));
+        thumbnail.classList.add("active");
+    }; //end image carousel
+
+
 
 export default class ProductDetails {
     constructor(productId, dataSource) {
