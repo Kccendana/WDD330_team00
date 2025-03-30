@@ -340,3 +340,37 @@ footer {
 .search-bar button:hover {
   background-color: #e65c00;
 }
+
+
+/* product image carousel */
+
+.image-gallery {
+  text-align: center;
+  max-width: 500px;
+  margin: auto;
+}
+
+#mainImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.thumbnails {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.thumbnail {
+  width: 60px !important;
+  height: auto;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid transparent;
+}
+
+.thumbnail.active {
+  border: 2px solid #007bff;
+} /*end image carousel*/
