@@ -8,11 +8,14 @@ function productDetailsTemplate(product) {
         discountIndicator = `<span class="discount-indicator"> -${discount}%</span>`
     }
 
+    //choose image according to window size
+    let imageUrl = window.innerWidth < 768 ? product.Images.PrimaryMedium : product.Images.PrimaryLarge;
+
     return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
     <h2 class="divider">${product.NameWithoutBrand}</h2>
     <img
       class="divider"
-      src="${product.Images.PrimaryLarge}"
+      src="${imageUrl}"
       alt="${product.NameWithoutBrand}"
     />
     <p class="product-card__price">$${product.FinalPrice} (${discountIndicator})</p>

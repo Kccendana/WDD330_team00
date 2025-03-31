@@ -224,8 +224,19 @@ select#sort-by {
 
 .cart-footer {
   font-size: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-
+a.checkoutBtn {
+  color: white;
+  background: var(--secondary-color);
+  padding: 0.25em;
+}
+a.checkoutBtn:hover {
+  background-color: var(--primary-color);
+  color: black;
+}
 /* Start cart list card styles */
 .cart-card {
   display: grid;
@@ -285,7 +296,73 @@ select#sort-by {
   top: 7px;
   font-size: 15px;
 }
-
+/*checkout.html*/
+form {
+  margin: 1rem 2%;
+ 
+  label {
+    display: block;
+    padding-top: .2rem;
+  }
+ 
+  h3 {
+    margin: 5px 0 10px 0;
+  }
+ 
+  input[type=text],
+    input[type=date],
+    select {
+      display: block;
+      margin: .1rem 0 1rem 0 ;
+      padding: .3rem;
+      border: 1px solid #999;
+      border-radius: 4px;
+      border-left-width: 5px;
+      border-left-color:#555;
+      font-size: 1rem;
+      color: #3D405B;
+      width: 250px;
+    }
+ 
+    input:required {border-left-color: #d70000;}
+    input:focus {border-left-color: black; outline:none;}
+    input:required:valid{border-left-color: green;}
+ 
+    input[type=submit] {
+      border: none;
+      text-align: center;
+      background-color: #3f6234;
+      color: white;
+      border-radius: 1rem;
+      padding: .75rem 2rem;
+      appearance: none;
+      margin: 10px;
+      font-size: 20px;
+    }
+}
+.con {
+  display: flex;
+  gap: 1em;
+}
+.label {
+  width: 4em;
+}
+.close {
+  color: var(--secondary-color);
+  font-size: 1.5em;
+  position: absolute;
+  right: 1em;
+  cursor: pointer;
+}
+.errCon {
+  display: none;
+  background-color: var(--primary-color);
+  position: relative;
+  padding: 2px;
+}
+.error{
+  color:var(--dark-grey); 
+}
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
