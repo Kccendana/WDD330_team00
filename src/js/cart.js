@@ -71,7 +71,7 @@ function incrementQuantity(id) {
   const items = getItemsFromLocalStorage();
   const index = items.findIndex(item => item.Id === id);
 
-  if (index!== -1) {
+  if (index !== -1) {
     items[index].quantity += 1; // Increase quantity
     setLocalStorage("so-cart", items); // Update local storage
     renderCartContents();
