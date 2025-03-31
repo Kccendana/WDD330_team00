@@ -347,6 +347,22 @@ form {
 .label {
   width: 4em;
 }
+.close {
+  color: var(--secondary-color);
+  font-size: 1.5em;
+  position: absolute;
+  right: 1em;
+  cursor: pointer;
+}
+.errCon {
+  display: none;
+  background-color: var(--primary-color);
+  position: relative;
+  padding: 2px;
+}
+.error{
+  color:var(--dark-grey); 
+}
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
