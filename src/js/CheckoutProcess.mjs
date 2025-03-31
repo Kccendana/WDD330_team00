@@ -3,6 +3,10 @@ import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
 
+function errorTemplate(errMessage){
+  return `<li class="errMessage">${errMessage}</li>`
+}
+
 function formDataToJSON(formElement) {
   // convert the form data to a JSON object
   const formData = new FormData(formElement);
@@ -69,6 +73,15 @@ export default class CheckoutProcess {
       // display the totals.
       this.displayOrderTotals();
     }
+    displayErrors(error){
+      const showError = document.querySelector(".errCon");
+      const errList = document.querySelector(".error")
+
+      showError.style.display = "block";
+      const errorMessage = Object.values(error).map((value) => 
+        errorTemplate(value));
+      errList.innerHTML = errorMessage.join("");
+    }
   
     displayOrderTotals() {
       // once the totals are all calculated display them in the order summary page
@@ -95,7 +108,14 @@ export default class CheckoutProcess {
           const response = await services.checkout(order);
           console.log(response);
         } catch (err) {
-          console.log(err);
+          console.log('Checkout failed:', err);
+
+          // Ensure error message is an object
+          if (err.message && typeof err.message === 'object') {
+            this.displayErrors(err.message);
+          } else {
+            alert(`Error: ${err.message}`);
+          }
         }
       }
   }
