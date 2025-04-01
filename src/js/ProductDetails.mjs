@@ -125,7 +125,8 @@ export default class ProductDetails {
         updateCartCount();
         
         console.log("Cart after adding:", getLocalStorage("so-cart")); // Debugging
-        alert("Added to Cart");
+        //alert("Added to Cart");
+        alertMessage(`${item.Name} added to cart!`);
     }
     
     
@@ -138,3 +139,7 @@ export default class ProductDetails {
         );
     }
 }
+
+function alertMessage(message, type = "success") {
+    alert(`${type.toUpperCase()}: ${message}`);
+  }

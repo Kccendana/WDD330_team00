@@ -445,7 +445,7 @@ footer {
 .order-summary p {
   font-size: 18px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 5px 0;
 }
 
@@ -472,7 +472,7 @@ footer {
   border-radius: 5px;
 }
 
-/* Checkout Button */
+/* Checkout Button 
 .checkout-button {
   width: 100%;
   background-color: #e74c3c;
@@ -484,7 +484,92 @@ footer {
   cursor: pointer;
   transition: 0.3s;
 }
+*/
+
+
+
+.alert-box {
+  background-color: #ca0d0d; /* Red background for errors */
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.alert-box ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.alert-box li {
+  margin: 5px 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.highlight-box {
+  background-color: #f8f9fa; /* Light gray background */
+  padding: 12px;
+  border-radius: 5px; /* Rounded corners */
+  margin-bottom: 12px; /* Spacing between fields */
+  border: 1px solid #ccc;
+}
+
+.highlight-box label {
+  font-weight: bold;
+  display: block; /* Move label above input */
+  margin-bottom: 5px;
+}
+
+.highlight-box input {
+  width: 50%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Style for fieldset */
+.form-section {
+  border: 2px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* Style for the submit button */
+.checkout-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  background-color: #28a745; /* Green */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
 .checkout-button:hover {
-  background-color: #c0392b;
+  background-color: #218838; /* Darker green */
 }
