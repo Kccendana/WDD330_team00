@@ -1,28 +1,74 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sleep Outside | Checkout</title>
-
-    <link rel="stylesheet" href="css/style.css" />
-
+    <link rel="stylesheet" href="/css/style.css">
     <script src="../js/checkout.js" type="module"></script>
-  </head>
-
-  <body>
+</head>
+<body>
     <header id="header" class="divider"></header>
 
     <main class="divider">
-      <section class="products">
-        <h2>Review & Place your Order</h2>
-      </section>
+        <section class="products">
+            <h2>Review & Place Your Order</h2>
+
+            <!-- Cart Items -->
+            <ul id="checkout-items" class="product-list checkout-items">
+                <!-- Cart items will be dynamically inserted here -->
+            </ul>
+
+              <!-- Order Summary -->
+              <div id="order-summary" class="order-summary">
+                <p><strong>Subtotal:</strong> <span id="subtotal">$0.00</span></p>
+                <p><strong>Tax (6%):</strong> <span id="tax">$0.00</span></p>
+                <p><strong>Shipping:</strong> <span id="shipping">$0.00</span></p>
+                <p class="total"><strong>Total:</strong> <span id="total">$0.00</span></p>
+            </div>
+
+
+            
+            <!-- Checkout Form -->
+            <form id="checkout-form" class="checkout-form">
+              <fieldset class="form-section">
+                  <legend>Customer Information</legend>
+                  <label for="fname">First Name:</label>
+                  <input type="text" id="fname" name="fname" required />
+
+                  <label for="lname">Last Name:</label>
+                  <input type="text" id="lname" name="lname" required /><br><br>
+
+                  <label for="street">Street Address:</label>
+                  <input type="text" id="street" name="street" required />
+
+                  <label for="city">City:</label>
+                  <input type="text" id="city" name="city" required />
+
+                  <label for="state">State:</label>
+                  <input type="text" id="state" name="state" required /><br><br>
+
+                  <label for="zip">Zip Code:</label>
+                  <input type="text" id="zip" name="zip" required />
+              </fieldset>
+
+              <fieldset class="form-section">
+                  <legend>Payment Information</legend>
+                  <label for="cardNumber">Credit Card Number:</label>
+                  <input type="text" id="cardNumber" name="cardNumber" required />
+
+                  <label for="expiration">Expiration Date:</label>
+                  <input type="text" id="expiration" name="expiration" required />
+
+                  <label for="code">Security Code:</label>
+                  <input type="text" id="code" name="code" required />
+              </fieldset>
+
+              <button type="submit" class="checkout-button">Complete Purchase</button>
+          </form>
+        </section>
     </main>
 
     <footer id="footer"></footer>
-    <!-- <footer>&copy;NOT a real business</footer> -->
-  </body>
+</body>
 </html>

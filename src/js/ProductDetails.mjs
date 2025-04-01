@@ -87,33 +87,48 @@ export default class ProductDetails {
         this.product = {};
         this.dataSource = dataSource;
     }
+
     async init() {
-        // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
         this.product = await this.dataSource.findProductById(this.productId);
-        // once we have the product details we can render out the HTML
         this.renderProductDetails("main");
-        // once the HTML is rendered we can add a listener to Add to Cart button
-        // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
-        document
-            .getElementById("addToCart")
-            .addEventListener("click", () => {
-             this.addToCart();
-             updateCartCount();
-            });
+    
+        // Ensure event listener is added after rendering
+        setTimeout(() => {
+            const addToCartBtn = document.getElementById("addToCart");
+            if (addToCartBtn) {
+                addToCartBtn.addEventListener("click", () => {
+                    this.addToCart();
+                    updateCartCount();
+                });
+            }
+        }, 100);
     }
+    
+
     addToCart() {
-        let cart = getLocalStorage("so-cart") || [];
+        let cart = getLocalStorage("so-cart");
+    
+        // Ensure cart is always an array
+        if (!Array.isArray(cart)) {
+            cart = [];
+        }
+    
         let item = cart.find(item => item.Id === this.product.Id);
     
         if (item) {
-            item.quantity = (item.quantity || 1) + 1;
+            item.quantity = (item.quantity || 0) + 1;
         } else {
             cart.push({ ...this.product, quantity: 1 });
         }
     
         setLocalStorage("so-cart", cart);
+        updateCartCount();
+        
+        console.log("Cart after adding:", getLocalStorage("so-cart")); // Debugging
         alert("Added to Cart");
     }
+    
+    
       
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
