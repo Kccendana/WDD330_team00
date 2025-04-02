@@ -5,7 +5,7 @@ import cors from "cors";
 
 const app = express();
 const PORT = 3000;
-const COMMENTS_FILE = path.join(process.cwd(), "public", "json", "comments.json");
+const COMMENTS_FILE = path.join(process.cwd(), "src/public", "json", "comments.json");
 
 // Middleware
 app.use(cors());
