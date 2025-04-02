@@ -573,3 +573,77 @@ footer {
 .checkout-button:hover {
   background-color: #218838; /* Darker green */
 }
+
+
+/* Form Styling */
+.OA-comment-form {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.OA-input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.OA-textarea {
+  height: 100px;
+  resize: none;
+}
+
+.OA-submit-btn {
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.OA-submit-btn:hover {
+  background: #0056b3;
+}
+
+/* Comments Section */
+.OA-comments-section {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 15px;
+}
+
+.OA-comment {
+  background: white;
+  padding: 10px;
+  border-left: 4px solid #007bff;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.OA-comment-author {
+  margin: 0;
+  color: #007bff;
+  font-size: 18px;
+}
+
+.OA-comment-text {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.OA-comment-time {
+  font-size: 12px;
+  color: gray;
+}
