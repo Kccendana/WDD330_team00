@@ -1,4 +1,6 @@
-import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs"; 
+
+const API_URL = "https://wdd330-backend-ul73.onrender.com/comments";
 
 // Image carousel
 function productDetailsTemplate(product) {
@@ -46,7 +48,7 @@ function productDetailsTemplate(product) {
 
         <!-- Comment Form -->
         <hr>
-        <p>Custumer comments</p>
+        <p>Customer comments</p>
         <form id="commentForm" class="OA-comment-form">
             <input type="text" id="fullname" placeholder="Full Name" required />
             <input type="email" id="email" placeholder="Email" required />
@@ -98,7 +100,7 @@ export default class ProductDetails {
                         fullname: document.getElementById("fullname").value,
                         email: document.getElementById("email").value,
                         phone: document.getElementById("phone").value,
-                        comment: document.getElementById("commentText").value, // Fix incorrect ID
+                        comment: document.getElementById("commentText").value,
                         timestamp: new Date().toISOString(),
                     };
 
@@ -151,7 +153,7 @@ function alertMessage(message, type = "success") {
 // Function to add a comment to the server
 async function addComment(productId, commentData) {
     try {
-        const response = await fetch(`http://localhost:3000/comments/${productId}`, {
+        const response = await fetch(`${API_URL}/${productId}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(commentData),
@@ -171,7 +173,7 @@ async function renderComments(productId) {
     commentsSection.innerHTML = "<p>Loading comments...</p>";
 
     try {
-        const response = await fetch(`http://localhost:3000/comments/${productId}`);
+        const response = await fetch(`${API_URL}/${productId}`);
         const comments = await response.json();
 
         if (comments.length === 0) {
