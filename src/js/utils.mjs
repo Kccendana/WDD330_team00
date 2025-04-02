@@ -29,9 +29,14 @@ export function getParam(param) {
   return product;
 }
 
-export function getItemsFromLocalStorage(){
+/*export function getItemsFromLocalStorage(){
   return getLocalStorage("so-cart") || [];
+} */
+export function getItemsFromLocalStorage() {
+  const items = getLocalStorage("so-cart");
+  return Array.isArray(items) ? items : [];
 }
+
 function itemsCount() {
   const items = getItemsFromLocalStorage()
   return items.reduce((total, item) => total + (item.quantity || 1), 0);
@@ -82,3 +87,41 @@ export async function loadHeaderFooter(){
   renderWithTemplate(footerTemplate, footerElement);
   updateCartCount();
 }
+
+export function alertMessage(messageArray, scroll = true) {
+  // Check if an alert already exists and remove it
+  const existingAlert = document.querySelector('.alert-box');
+  if (existingAlert) {
+      existingAlert.remove();
+  }
+
+  // Create an alert container
+  const alertBox = document.createElement('div');
+  alertBox.classList.add('alert-box');
+  
+  // Convert the messageArray to a list format
+  const messageList = document.createElement('ul');
+  messageArray.forEach(msg => {
+      const listItem = document.createElement('li');
+      listItem.textContent = msg;
+      messageList.appendChild(listItem);
+  });
+
+  alertBox.appendChild(messageList);
+
+  // Add the alert to the top of the main section
+  const main = document.querySelector('main');
+  if (main) {
+      main.prepend(alertBox);
+  } else {
+      document.body.prepend(alertBox); // Fallback if no main exists
+  }
+
+  // Scroll to the top so the user sees the errors
+  if (scroll) {
+      window.scrollTo(0, 0);
+  }
+}
+
+
+
