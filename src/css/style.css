@@ -24,6 +24,11 @@ body {
   font-size: var(--font-base);
   color: var(--dark-grey);
 }
+.container {
+  width: 375px;
+  height: 520px;
+  border-radius: 15px;
+}
 
 ul.categories {
   display: flex;
@@ -138,7 +143,8 @@ button {
   align-items: center;
   gap: 1em;
 }
-.increment, .decrement {
+.increment,
+.decrement {
   cursor: pointer;
   font-size: 1em;
   background-color: none;
