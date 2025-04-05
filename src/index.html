@@ -4,11 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Home</title>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    />
     <link rel="stylesheet" href="/css/style.css" />
     <script src="js/main.js" type="module"></script>
   </head>
   <body>
     <header id="header" class="divider"></header>
+    <div>
+      <form id="search-form" action="product-listing.html" method="GET">
+        <i class="fas fa-search"></i>
+        <input
+          type="text"
+          id="search-item"
+          name="query"
+          placeholder="Search products"
+          required
+        />
+      </form>
+    </div>
     <main class="divider">
       <div class="hero">
         <img
@@ -21,36 +37,33 @@
           <div>Sleep<span class="highlight">Outside</span></div>
         </div>
       </div>
-     
-        <ul class="categories">
-          <li>
-            <a href="product_listing/index.html?category=tents">
-              <img src="images/category-tents.svg" alt="Tents">
-              <p>Tents</p>
-            </a>
-          </li>
-          <li>
-            <a href="product_listing/index.html?category=backpacks">
-              <img src="images/category-backpacks.svg" alt="Backpacks">
-              <p>Backpacks</p>
-            </a>
-          </li>
-          <li>
-            <a href="product_listing/index.html?category=hammocks">
-              <img src="images/category-hammocks.svg" alt="Hammocks">
-              <p>Hammocks</p>
-            </a>
-          </li>
-          <li>
-            <a href="product_listing/index.html?category=sleeping-bags">
-              <img src="images/category-sleepingbags.svg" alt="Sleeping bags">
-              <p>Sleeping Bags</p>
-            </a>
-          </li>
-          </ul>
-     
-     
-      
+
+      <ul class="categories">
+        <li>
+          <a href="product_listing/index.html?category=tents">
+            <img src="images/category-tents.svg" alt="Tents" />
+            <p>Tents</p>
+          </a>
+        </li>
+        <li>
+          <a href="product_listing/index.html?category=backpacks">
+            <img src="images/category-backpacks.svg" alt="Backpacks" />
+            <p>Backpacks</p>
+          </a>
+        </li>
+        <li>
+          <a href="product_listing/index.html?category=hammocks">
+            <img src="images/category-hammocks.svg" alt="Hammocks" />
+            <p>Hammocks</p>
+          </a>
+        </li>
+        <li>
+          <a href="product_listing/index.html?category=sleeping-bags">
+            <img src="images/category-sleepingbags.svg" alt="Sleeping bags" />
+            <p>Sleeping Bags</p>
+          </a>
+        </li>
+      </ul>
     </main>
     <footer id="footer"></footer>
     <!-- <footer>&copy;NOT a real business</footer> -->
