@@ -8,7 +8,7 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
 
     <script src="../js/checkout.js" type="module"></script>
   </head>
@@ -17,9 +17,65 @@
     <header id="header" class="divider"></header>
 
     <main class="divider">
-      <section class="products">
-        <h2>Review & Place your Order</h2>
-      </section>
+      <div class="errCon">
+        <span class="close">x</span>
+        <ul class="error"></ul>
+      </div>
+      
+      <form method="post" action="" class="form-checkout" name="checkout">
+        <input type="hidden" name="orderDate" id="orderDate">
+        <fieldset>
+        <fieldset>
+          <h3>Customer Name</h3>
+          <label>First Name <input type="text" name="fname" required autocapitalize="" autocomplete="given-name" title="Your First Name"></label>
+          <label>Last Name <input type="text" name="lname" required autocapitalize="" autocomplete="family-name" title="Your Family Name"></label>
+        </fieldset>
+
+        <fieldset>
+          <h3>Address</h3>
+          <label>Street Address <input type="text" name="street" required autocomplete="street-address" title="Your Street Address"></label>
+          <label>City <input type="text" name="city" required autocomplete="address-level2" title="Your City"></label>
+          <label>State <input type="text" name="state" required autocomplete="address-level3" title="Your State"></label>
+          <label>Zip Code <input type="text" name="zip" required autocomplete="postal-code" title="Your Zip Code"></label>
+        </fieldset>
+
+        <fieldset>
+          <h3>Payment</h3>
+          <label>Credit Card Number <input type="text" name="cardNumber" required title="Your Credit Card Number"></label>
+          <label>Expiration Date <input type="text" name="expiration" id="expiration" required></label>
+          <label>Security Code <input type="text" name="code" required title="Your Security Code Number"></label>
+        </fieldset>
+
+        <fieldset class="summary">
+          <h3>Order Summary</h3>
+
+          <div class="order-summary">
+            <div class="con">
+              <div class="label">Items</div>
+            <div id="num-items"></div>
+            </div>
+            
+            <div class="con">
+               <div class="label">Subtotal</div>
+            <div id="cartTotal"></div>
+            </div>
+            <div class="con">
+              <div class="label">Tax</div>
+            <div id="tax"></div>
+            </div>
+            <div class="con">
+              <div class="label">Shipping</div>
+            <div id="shipping"></div>
+            </div>
+            <div class="con">
+              <div class="label">Total</div>
+            <div id="orderTotal"></div>
+            </div>
+          </div>
+        </fieldset>
+        <input id="checkoutSubmit" type="submit" value="Checkout Items">
+        </fieldset>
+      </form>
     </main>
 
     <footer id="footer"></footer>
